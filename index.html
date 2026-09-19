@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Organiza — Planificador de estudios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#hoy"><span class="brand-mark">o</span><span>organiza</span></a>
+        <nav class="nav" aria-label="Navegación principal">
+          <button class="nav-item active" data-view="today"><span>◉</span> Hoy <b id="todayCount">0</b></button>
+          <button class="nav-item" data-view="calendar"><span>▦</span> Calendario</button>
+          <button class="nav-item" data-view="tasks"><span>✓</span> Todas las tareas</button>
+        </nav>
+        <div class="sidebar-heading"><span>ÁREAS</span><button id="newProjectSide" aria-label="Añadir curso">+</button></div>
+        <div id="projectList" class="project-list"></div>
+        <div class="sidebar-tip"><span>✦</span><p><strong>Pequeño avance, gran resultado.</strong> Organiza hoy para llegar tranquilo mañana.</p></div>
+        <div class="profile"><div class="avatar">JR</div><div><strong>Mi espacio</strong><small>Plan de estudio</small></div><span>⌄</span></div>
+      </aside>
+
+      <main class="content">
+        <header class="topbar"><button class="mobile-menu" id="mobileMenu">☰</button><div id="crumb">MI PLANIFICACIÓN</div><button class="icon-button" id="themeToggle" title="Cambiar tema">◐</button></header>
+        <section id="todayView" class="view active">
+          <div class="welcome"><div><p class="eyebrow" id="dateLabel"></p><h1>Hola, Jason <span>✦</span></h1><p>Haz espacio para lo que importa. Este es tu plan para hoy.</p></div><button class="primary" id="addTask">+ Nueva tarea</button></div>
+          <div class="stats" id="stats"></div>
+          <div class="section-title"><div><h2>Enfócate en esto</h2><p id="focusSubtitle">Tus tareas importantes para hoy</p></div><button class="text-button" data-view="tasks">Ver todas →</button></div>
+          <div id="focusTasks" class="task-list featured-list"></div>
+          <div class="section-title upcoming-title"><div><h2>Próximamente</h2><p>Fechas que vale la pena tener presentes</p></div></div>
+          <div id="upcoming" class="upcoming-grid"></div>
+        </section>
+
+        <section id="calendarView" class="view">
+          <div class="page-title"><div><p class="eyebrow">TU AGENDA</p><h1>Calendario</h1></div><button class="primary" data-add-task>+ Nueva tarea</button></div>
+          <div class="calendar-card"><div class="calendar-head"><button class="round" id="prevMonth">←</button><h2 id="monthTitle"></h2><button class="round" id="nextMonth">→</button></div><div class="weekdays"><span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span></div><div class="calendar-days" id="calendarDays"></div></div>
+        </section>
+
+        <section id="tasksView" class="view">
+          <div class="page-title"><div><p class="eyebrow">TODO TU TRABAJO</p><h1>Tareas</h1></div><button class="primary" data-add-task>+ Nueva tarea</button></div>
+          <div class="filters"><button class="filter active" data-filter="all">Todas</button><button class="filter" data-filter="today">Hoy</button><button class="filter" data-filter="upcoming">Próximas</button><button class="filter" data-filter="overdue">Atrasadas</button></div>
+          <div id="allTasks" class="task-list all-task-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="taskModal"><form method="dialog" id="taskForm"><div class="modal-head"><div><p class="eyebrow">PLANIFICA CON INTENCIÓN</p><h2>Nueva tarea</h2></div><button class="close" value="cancel" aria-label="Cerrar">×</button></div><label>Tarea<input required id="taskTitle" placeholder="Ej. Resolver ejercicios del tema 3" /></label><div class="form-grid"><label>Área / curso<select id="taskProject"></select></label><label>Fecha límite<input id="taskDate" type="date" /></label><label>Prioridad<select id="taskPriority"><option value="high">Alta</option><option value="medium" selected>Media</option><option value="low">Baja</option></select></label><label>Tipo<select id="taskType"><option>Estudio</option><option>Entrega</option><option>Examen</option><option>Lectura</option><option>Práctica</option></select></label></div><label>Notas <textarea id="taskNotes" placeholder="Detalles, enlaces o instrucciones…"></textarea></label><div class="modal-actions"><button class="secondary" value="cancel">Cancelar</button><button class="primary" value="default">Guardar tarea</button></div></form></dialog>
+
+    <dialog id="projectModal"><form method="dialog" id="projectForm"><div class="modal-head"><div><p class="eyebrow">ORGANIZA TU PLAN</p><h2>Nuevo curso o materia</h2></div><button class="close" value="cancel">×</button></div><label>Nombre<input required id="projectName" placeholder="Ej. Álgebra lineal" /></label><div class="form-grid"><label>Área<select id="projectArea"><option>Universidad</option><option>Certificaciones</option></select></label><label>Color<select id="projectColor"><option value="violet">Violeta</option><option value="orange">Naranja</option><option value="blue">Azul</option><option value="green">Verde</option></select></label></div><div class="modal-actions"><button class="secondary" value="cancel">Cancelar</button><button class="primary" value="default">Crear</button></div></form></dialog>
+    <script src="app.js"></script>
+  </body>
+</html>
