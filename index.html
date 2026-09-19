@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <style>
+      .pomodoro-card{display:flex;align-items:center;justify-content:space-between;gap:30px;background:linear-gradient(110deg,#f2efff,#fff9f5);border:1px solid #e4defa;border-radius:13px;padding:22px 25px;margin:-20px 0 40px;box-shadow:var(--shadow)}.pomodoro-copy h2{font:700 22px 'Playfair Display';margin:0}.pomodoro-copy>p:not(.eyebrow){margin:5px 0 15px;color:var(--muted);font-size:12px}.pomodoro-select-label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#817b95;margin:0 0 4px}.pomodoro-copy select{min-width:280px;margin:0;padding:8px 10px;font-size:12px;background:#fff}.pomodoro-clock{display:flex;align-items:center;gap:18px}.timer-ring{width:103px;height:103px;border:5px solid #ddd7fb;border-top-color:var(--violet);border-radius:50%;display:grid;place-content:center;text-align:center;background:#fff}.timer-ring span{font:700 23px 'DM Sans';letter-spacing:-1px}.timer-ring small{font-size:8px;color:#8b85a0;letter-spacing:1px;font-weight:bold;margin-top:2px}.pomodoro-actions{display:grid;gap:7px}.pomodoro-actions .secondary{font-size:18px;padding:5px 10px}.pomodoro-actions .primary{padding:9px 15px}.primary:disabled{background:#aaa6b9;box-shadow:none;cursor:not-allowed}.pomodoro-count{color:#776bd7;font-weight:600}.focus-task{opacity:0;background:#f0edff;color:#6758d5;border-radius:6px;padding:4px 6px;font-size:13px}.task:hover .focus-task{opacity:1}@media(max-width:780px){.pomodoro-card{align-items:flex-start;padding:18px;gap:15px}.pomodoro-copy select{min-width:0}.pomodoro-clock{gap:8px}.timer-ring{width:78px;height:78px;border-width:4px}.timer-ring span{font-size:18px}.pomodoro-actions .primary{padding:8px 10px}}
+    </style>
   </head>
   <body>
     <div class="app-shell">
@@ -29,6 +32,10 @@
         <section id="todayView" class="view active">
           <div class="welcome"><div><p class="eyebrow" id="dateLabel"></p><h1>Hola, Jason <span>✦</span></h1><p>Haz espacio para lo que importa. Este es tu plan para hoy.</p></div><button class="primary" id="addTask">+ Nueva tarea</button></div>
           <div class="stats" id="stats"></div>
+          <section class="pomodoro-card" aria-labelledby="pomodoroTitle">
+            <div class="pomodoro-copy"><p class="eyebrow">MODO ENFOQUE</p><h2 id="pomodoroTitle">Pomodoro</h2><p id="pomodoroTaskName">Elige una tarea para comenzar una sesión.</p><label class="pomodoro-select-label" for="pomodoroTask">Tarea en foco</label><select id="pomodoroTask" aria-label="Tarea asociada al temporizador"></select></div>
+            <div class="pomodoro-clock" aria-live="polite"><div class="timer-ring"><span id="pomodoroTime">25:00</span><small>ENFOQUE</small></div><div class="pomodoro-actions"><button class="secondary" id="pomodoroReset" title="Reiniciar temporizador">↺</button><button class="primary" id="pomodoroToggle">Iniciar</button></div></div>
+          </section>
           <div class="section-title"><div><h2>Enfócate en esto</h2><p id="focusSubtitle">Tus tareas importantes para hoy</p></div><button class="text-button" data-view="tasks">Ver todas →</button></div>
           <div id="focusTasks" class="task-list featured-list"></div>
           <div class="section-title upcoming-title"><div><h2>Próximamente</h2><p>Fechas que vale la pena tener presentes</p></div></div>
